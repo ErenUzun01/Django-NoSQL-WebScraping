@@ -1,0 +1,111 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ categorydata.title}} Products  {% endblock %}   <!--veritabanından çekiyoruz    title Hakkimizda AŞ. yazisi -->
+{% block keywords %} {{ categorydata.keywords}}{% endblock %}
+{% block description %} {{ categorydata.description}}{% endblock %}
+<!-->{% block head %} <link rel='shortcut icon' type='image/x-icon' href='{{ Setting.icon.url }}'/> {% endblock %} # sayfa başlığındaki fotoğraf (icon)<!-->
+  
+
+
+{% block sidebar %}
+    {% include "sidebar.html" %}   <!-- sidebari kaldiriyoruzki yazilar net gözüksün -->
+{% endblock %}
+
+
+
+{% block content %} 
+
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Anasayfa</a></li>         
+            <li class="active">{{ categorydata.title}}</li> 
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="section">
+    
+    <div class="container">
+    
+        <div class="row">
+<!-- ASIDE -->
+
+ 
+    <h2>{{categorydata.title}} Ürünler</h2>
+    
+    
+    
+       
+    
+    
+    <!-- /store top filter -->
+    <!-- STORE -->
+    <div id="store">
+        <!-- row -->
+        <div class="row">
+            {% for rs in products %}                                         <!-- ÜRÜNLERİ BURDAN ÇEKİYORUM TİTLE İD SLUG PRİCE KISIMLARI-->
+            <!-- Product Single -->
+            <div class="col-md-4 col-sm-6 col-xs-6">
+                <div class="product product-single">
+                    <div class="product-thumb">
+                        <div class="product-label">
+                            <span>New</span>
+                            <span class="sale">-20%</span>
+                        </div>
+                        <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
+
+                        <img src="{{ rs.image.url }}" alt="" style="max-width: 400px; height: auto;">
+
+
+                        
+                        
+
+                        
+
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-price">$^{{ rs.price }} <del class="product-old-price">{{ rs.price }}</del></h3>
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                        </div>
+                        <h2 class="product-name"><a href="/product/{{rs.id}}/{{rs.slug}}">{{ rs.title }}</a></h2>
+                        <div class="product-btns">
+                            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+                            <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+                            <button onclick="location.href='/order/addtocart/{{ rs.id }}'" class="primary-btn add-to-cart">
+                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Product Single -->
+            {%endfor%}
+
+            
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /STORE -->
+
+  
+<!-- /MAIN -->
+
+
+
+        </div>
+        
+    </div>
+    
+</div>
+
+    
+{% endblock %}

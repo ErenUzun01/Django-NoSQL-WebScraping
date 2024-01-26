@@ -1,0 +1,67 @@
+{% extends "homebase.html" %}
+
+{% block title %}Products Search Results{% endblock %}
+{% block keywords %}{{ catagorydata.keywords }}{% endblock %}
+{% block description %}{{ catagorydata.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ Setting.icon.url }}'/>
+    <link rel='shortcut icon' type='image/x-icon' href='{{ Setting.icon.url }}' />
+{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">{{ catagorydata.title }} Sonuçlar</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- section -->  
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <table cellpadding="3" width="1200">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                    </tr>
+                    {% for rs in products %}   <!-- TR TABLO SATIRI  TD TABLO HÜCRESİDİR -->
+                        <tr>
+                            <td>
+                                <a href="/product/{{ rs.id }}/{{ rs.slug }}">        <!-- TIKLANILABİLİR BAĞLANTI YERİ -->
+                                    <img src="{{ rs.image.url }}" style="max-width: 40%;" alt="" >    <!-- FOTOĞRAFLARI ÇEKİYORUZ-->
+                                </a>
+                            </td>
+                            <td>
+                                <h4 class="product-name">
+                                    <a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a>   <!--Ürün adını temsil eden bir başlık etiketini ve tıklanılabilir bir bağlantıyı içerir-->
+                                </h4>
+                            </td>
+                            <td>
+                                <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a>   <!--DETAY SAYFASINA GÖNDERME YERİ  -->
+                            </td>  
+                            <td>
+                                <h4>${{ rs.price }}</h4>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /section -->
+</div>
+{% endblock %}

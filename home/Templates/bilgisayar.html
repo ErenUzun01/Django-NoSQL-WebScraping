@@ -1,0 +1,25 @@
+ <!-- {% extends "homebase.html" %}
+
+
+{% block sidebar %}
+    {% include "sidebar.html" %}   <!-- sidebari kaldiriyoruzki yazilar net gözüksün 
+{% endblock %}
+
+{% block content %}
+    <h1>Bilgisayar Sayfası</h1>
+    <!-- Sayfanın içeriği buraya gelecek -->
+    <ul class="footer-social">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+    </ul>
+
+    <!-- Bilgisayar kategorisi için menü bağlantısı -->
+    <ul>
+        <li><a href="{% url 'bilgisayar' %}">Bilgisayar</a></li> 
+        <!-- Diğer kategori bağlantıları... -->
+    </ul>
+{% endblock %} 
+
